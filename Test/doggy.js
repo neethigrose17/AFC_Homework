@@ -1,1 +1,1 @@
-const horse = "woof!"
+const doggy = "woof!"
