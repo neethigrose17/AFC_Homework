@@ -1,0 +1,16 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#dog_image-container {
+  box-shadow: 2px 2px 30px white;
+  width: 500px;
+  margin: 0 500px;
+}
+
+#dog_image-container img {
+  width: 100%;
+}
