@@ -14,14 +14,16 @@ const Table = (props) => {
                 </tr>
             </thead>
             <tbody>
+                {/* This took FOREVER for me to figure out. I had so many errors, from "data is not defined" to ".map is not a function" and finally realized that props is an object and I had to destructure it into "info" for this to work. I also forgot the return statement at first. */}
                 {info.map((el, i) => {
-                    {console.log(el)}
-                    <tr>
-                        <td>{el.name}</td>
-                        <td>{el.height}</td>
-                        <td>{el.hair_color}</td>
-                        <td>{el.gender}</td>
-                    </tr>
+                    return (
+                        <tr>
+                            <td>{el.name}</td>
+                            <td>{el.height}</td>
+                            <td>{el.hair_color}</td>
+                            <td>{el.gender}</td>
+                        </tr>
+                    )
                 })}
             </tbody>
         </table>
