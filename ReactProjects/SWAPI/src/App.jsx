@@ -7,8 +7,6 @@ const endpoint = "https://swapi.dev/api/people";
 
 const App = () => {
   let temp = 1;
-
-  const [tableInfo, setTableInfo] = useState([]);
   const [content, setContent] = useState([]);
 
   const handleSubmit = () => {
@@ -16,7 +14,6 @@ const App = () => {
     .get(endpoint)
     .then(response => {
       console.log(response.data.results);
-      setTableInfo(response.data.results);
       setContent(<Table props={response.data.results} />)
     })
     .catch(err => {
@@ -27,6 +24,7 @@ const App = () => {
   const handleReset = () => {
     temp = 3;
   }
+  
   return (
     <>
       <h1>Star Wars App page v.2</h1>
