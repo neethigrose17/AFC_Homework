@@ -19,7 +19,8 @@ const Table = (props) => {
                     return (
                         <tr>
                             <td>{el.name}</td>
-                            <td>{el.height}</td>
+                            <td>{el.height} cm</td>
+                            {/* I am assuming this is cm */}
                             <td>{el.hair_color}</td>
                             <td>{el.gender}</td>
                         </tr>

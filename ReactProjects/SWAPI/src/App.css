@@ -16,4 +16,6 @@ body {
 
 button {
   margin: 10px;
+  /* background-color: lightgray; */
+  /* I can't change the color of the buttons for some reason */
 }

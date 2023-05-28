@@ -1,3 +1,9 @@
 #main_table, th, td {
     border: 1px solid white;
+    color: black;
+    background-color: lightgray;
+}
+
+th, td {
+    width: 150px;
 }
