@@ -1,14 +1,21 @@
-import './App.css';
-import Table from "./components/Table";
-import axios from "axios";
-const endpoint = "https://swapi.dev/api/people";
+import './App.css'
 
+let temp = 1;
+
+const handleSubmit = () => {
+  temp = 2;
+}
+
+const handleReset = () => {
+  temp = 3;
+}
 
 const App = () => {
   return (
     <>
-      <h1>I am the App page</h1>
-      <Table />
+      <h1>Star Wars App page v.2</h1>
+      <button type="submit" onClick={handleSubmit}>Click for Star Wars character info</button>
+      <button type="submit" onClick={handleReset}>Click to reset</button>
     </>
   )
 }
