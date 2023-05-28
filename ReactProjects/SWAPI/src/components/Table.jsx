@@ -1,28 +1,9 @@
-import axios from "axios";
-import {useEffect, useState} from "react";
 import "./Table.css";
 
-const tableInfo = (props) => {
-    // let characterInfo = props.map((el, i) => {
-    const {data} = props;
-    let characters = data.map((el, i) => {
-        (
-            <tr>
-                <td>{el.name}</td>
-                <td>{el.height}</td>
-                <td>{el.hair_color}</td>
-                <td>{el.gender}</td>
-            </tr>
-        )
-    })
-    return characters;
-        
-    // })
-}
-
-const Table = () => {
+const Table = (props) => {
+    const {info} = props;
     return (
-        <table id="maintable">
+        <table id="main_table">
             {/* dev tools told me I have to add these thead and tbody tags */}
             <thead>
                 <tr>
@@ -33,7 +14,15 @@ const Table = () => {
                 </tr>
             </thead>
             <tbody>
-                {tableInfo}
+                {info.map((el, i) => {
+                    {console.log(el)}
+                    <tr>
+                        <td>{el.name}</td>
+                        <td>{el.height}</td>
+                        <td>{el.hair_color}</td>
+                        <td>{el.gender}</td>
+                    </tr>
+                })}
             </tbody>
         </table>
     )
