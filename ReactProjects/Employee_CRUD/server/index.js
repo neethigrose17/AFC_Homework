@@ -9,6 +9,10 @@ const port = process.env.PORT || 3000;
 const logger = require("morgan");
 app.use(logger("dev"));
 
+// body parser
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
 // CONNECTION
 // Need the env variables we created - destructure
 const {PG_HOST, PG_PORT, PG_DB, PG_USER, PG_PW} = process.env
@@ -30,7 +34,7 @@ conn
 
 // Route Handlers
 
-app.get("/employees/all", (req, res) => {
+app.get("/employee/all", (req, res) => {
     let query = `SELECT *
                 FROM employees;`
     conn.query(query)
@@ -38,6 +42,34 @@ app.get("/employees/all", (req, res) => {
         res.json(data.rows)
     })
     .catch(err => res.send(`Error reading data: ${err}`));
+})
+
+app.post("/employee/new", (req, res) => {
+    // data will be sent from client as body
+    const {first_name, last_name, age, salary} = req.body;
+    let query = `INSERT INTO employees (first_name, last_name, age, salary)
+                VALUES ('${first_name}', '${last_name}', ${age}, ${salary})
+                RETURNING *;`;
+    conn
+    .query(query)
+    .then(data => {
+        console.log("DATA has been added to DB");
+        res.json(data.rows[0])
+    })
+    .catch(err => res.send(`Error posting data: ${err}`));
+})
+
+app.delete("/employee/:id", (req, res) => {
+    let query = `DELETE FROM employees
+                WHERE employee_id = ${Number(req.params.id)}
+                RETURNING *;`;
+    conn
+    .query(query)
+    .then(data => {
+        console.log("DATA has been deleted from DB");
+        res.json(data.rows[0])
+    })
+    .catch(err => res.send(`Error deleting data: ${err}`));
 })
 
 app.get("*", (req, res) => {
