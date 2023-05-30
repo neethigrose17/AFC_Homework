@@ -31,7 +31,13 @@ conn
 // Route Handlers
 
 app.get("/employees/all", (req, res) => {
-    res.send("ALL employees")
+    let query = `SELECT *
+                FROM employees;`
+    conn.query(query)
+    .then(data => {
+        res.json(data.rows)
+    })
+    .catch(err => res.send(`Error reading data: ${err}`));
 })
 
 app.get("*", (req, res) => {
