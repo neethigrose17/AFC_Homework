@@ -72,6 +72,24 @@ app.delete("/employee/:id", (req, res) => {
     .catch(err => res.send(`Error deleting data: ${err}`));
 })
 
+app.put("/employee/:id", (req, res) => {
+    const {first_name, last_name, age, salary} = req.body
+    let query = `UPDATE employees
+                SET first_name='${first_name}',
+                    last_name='${last_name}',
+                    age=${age},
+                    salary=${salary}
+                WHERE employee_id = ${Number(req.params.id)}
+                RETURNING *;`
+    conn
+    .query(query)
+    .then(data => {
+        console.log("DATA has been updated");
+        res.json(data.rows[0])
+    })
+    .catch(err => res.send(`Error updating data: ${err}`));
+})
+
 app.get("*", (req, res) => {
     res.send("No routes matching");
 });
