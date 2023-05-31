@@ -5,7 +5,7 @@ import {createTheme} from "@mui/material";
 export default createTheme({
     palette: {
         primary: {
-            main: "green"
+            main: "#00e676"
         }
     }
 })
