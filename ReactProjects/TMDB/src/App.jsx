@@ -1,12 +1,23 @@
-import axios from "axios";
-import './App.css'
+// packages, modules, components
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Landing from "./components/Landing"
+import Results from "./components/Results";
+import Error from "./components/Error";
 
-const baseURL = "https://api.themoviedb.org/3"
+// styling
+import './App.css'
 
 const App = () => {
   return (
     <>
-      <h1>I am the app page</h1>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/error" element={<Error />}/>
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
     </>
   )
 }

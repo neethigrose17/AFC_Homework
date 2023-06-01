@@ -1,12 +1,9 @@
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
+import {AppBar, Box, Toolbar, IconButton, Typography, InputBase} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import {Button, Menu, MenuItem, Link} from '@mui/material';
+import {useState} from "react";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -50,10 +47,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function NavBar() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar positionmode="sticky">
         <Toolbar>
           <IconButton
             size="large"
@@ -61,16 +66,41 @@ export default function SearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleClose}>
+              <Link href="/" sx={{ textDecoration: "none" }}>
+                Home
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href="/results" sx={{ textDecoration: "none" }}>
+                Now Playing
+              </Link>
+            </MenuItem>
+          </Menu>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            The Movie Database - React
           </Typography>
           <Search>
             <SearchIconWrapper>

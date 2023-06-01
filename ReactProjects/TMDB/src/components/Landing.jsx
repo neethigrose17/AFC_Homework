@@ -7,15 +7,16 @@ import "../App.css"
 import { ThemeProvider, Typography } from "@mui/material";
 import theme from "./ui/Theme";
 
-const Error = () => {
+
+const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
         <NavBar />
-        <h1>I am the error page</h1>
+        <h1>I am the landing page</h1>
       </ThemeProvider>
     </>
   )
 }
 
-export default Error;
+export default App;

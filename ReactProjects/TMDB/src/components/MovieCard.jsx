@@ -18,9 +18,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default Card = (props) => {
+let MovieCard;
+
+export default MovieCard = (props) => {
   const {nowPlayingMovies} = props;
   const [expanded, setExpanded] = useState(false);
+  console.log(nowPlayingMovies);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -105,6 +108,5 @@ export default Card = (props) => {
     </Card>
       )
     })
-    
   );
 }
