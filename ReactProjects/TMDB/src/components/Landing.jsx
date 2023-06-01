@@ -13,7 +13,7 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <NavBar />
-        <h1>I am the landing page</h1>
+        <h1>Welcome to the Movie Database!</h1>
       </ThemeProvider>
     </>
   )

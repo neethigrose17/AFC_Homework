@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import NavBar from "./NavBar";
-import NewCard from "./NewCard";
+import Card from "./Card";
 
 // styling
 import "../App.css"
@@ -37,7 +37,8 @@ const Results = () => {
     <>
       <ThemeProvider theme={theme}>
         <NavBar />
-        <NewCard movieArray={cardData}/>
+        <h1>Now Playing</h1>
+        <Card movieArray={cardData}/>
       </ThemeProvider>
     </>
   )

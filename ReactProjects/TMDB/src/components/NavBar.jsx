@@ -100,7 +100,6 @@ export default function NavBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            The Movie Database - React
           </Typography>
           <Search>
             <SearchIconWrapper>
