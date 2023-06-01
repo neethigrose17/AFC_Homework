@@ -1,4 +1,4 @@
-import {Button, Menu, MenuItem} from '@mui/material';
+import {Button, Menu, MenuItem, Link} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useState} from "react";
 
@@ -32,9 +32,21 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>All Employees</MenuItem>
-        <MenuItem onClick={handleClose}>New Employee</MenuItem>
-        <MenuItem onClick={handleClose}>Update Employee</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link href="/employee/table" sx={{textDecoration: "none"}}>
+            All Employees
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link href="/employee/new" sx={{textDecoration: "none"}}>
+            New Employee
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link href="/employee/3" sx={{textDecoration: "none"}}>
+            Update Employee
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );

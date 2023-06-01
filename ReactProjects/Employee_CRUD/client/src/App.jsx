@@ -4,7 +4,8 @@ import Landing from "./components/Landing";
 import Table from "./components/Table";
 import Error from "./components/Error";
 import Navbar from "./components/Navbar";
-import {ThemeProvider} from "@mui/material";
+import Form from "./components/Form";
+import {ThemeProvider, Typography} from "@mui/material";
 import theme from "./components/ui/Theme";
 
 // styling
@@ -15,15 +16,22 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <Navbar />
-        <h1>Employees 'R' Us</h1>
+        <Typography
+          variant="h2"
+          sx={{color: "primary.main",
+              '&:hover': {backgroundColor: "orangered"}}}>
+                Employees 'R' Us
+        </Typography>
         <Router>
-          <Link to="/employee/table">All Employees</Link>
+          {/* <Link to="/employee/table">All Employees</Link>
           <Link to="/">Landing Page</Link>
-          <Link to="/employee">Error Page</Link>
+          <Link to="/employee">Error Page</Link> */}
           <Routes>
-            <Route exact path="/" element={<Landing doggy="horse"/>}/>
+            <Route exact path="/" element={<Landing/>}/>
             <Route path="/employee/table" element={<Table/>}/>
-            <Route path="/employee" element={<Error/>}/>
+            <Route path="/employee/new" element={<Form/>}/>
+            <Route path="/employee/3" element={<Form/>}/>
+            <Route path="*" element={<Error/>}/>
           </Routes>
         </Router>
       </ThemeProvider>
