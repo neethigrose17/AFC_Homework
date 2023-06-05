@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import {Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography} from '@mui/material';
 import { red } from '@mui/material/colors';
@@ -23,8 +23,9 @@ export default function MovieCard(props) {
   const [expanded, setExpanded] = useState(false);
   const imageBaseURL = "https://image.tmdb.org/t/p/w500"
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = (event) => {
+    let requestedID = event.target.parentElement.dataset.id;
+    setExpanded(requestedID)(!expanded);
   };
 
   return (
@@ -32,14 +33,9 @@ export default function MovieCard(props) {
     {movieArray.map((el, i) => {
       return (
           <div className="card">
-            <Card key={i} sx={{ maxWidth: 200 }}>
-              <CardHeader
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={<Typography variant="subtitle1">{el.original_title}</Typography>}
+            <Card data-id={el.id} key={el.id} sx={{ maxWidth: 200 }}>
+              <CardHeader sx={{ height: 60 }}
+                title={<Typography variant="subtitle1" fontWeight="bold">{el.original_title}</Typography>}
                 subheader={<Typography variant="subtitle2" color="text.secondary">{el.release_date}</Typography>}
               />
               <CardMedia
@@ -48,11 +44,9 @@ export default function MovieCard(props) {
                 image={`${imageBaseURL}/${el.poster_path}`}
                 alt={el.original_title}
               />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  <Typography variant="body1">
+              <CardContent sx={{height: 10}}>
+                <Typography variant="body1" color="text.secondary">
                     Rating: {el.vote_average}
-                  </Typography>
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
