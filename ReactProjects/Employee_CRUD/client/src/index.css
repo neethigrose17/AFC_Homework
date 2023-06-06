@@ -71,3 +71,7 @@ button:focus-visible {
 /* #basic-button:hover {
   border-color: red;
 } */
+
+div.MuiFormControl-root {
+  background-color: white;
+}

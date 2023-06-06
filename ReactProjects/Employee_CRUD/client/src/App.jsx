@@ -5,8 +5,8 @@ import Table from "./components/Table";
 import Error from "./components/Error";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
-import {ThemeProvider, Typography} from "@mui/material";
-import theme from "./components/ui/Theme";
+import {ThemeProvider, Typography, createTheme} from "@mui/material";
+import palette from "./components/ui/Theme";
 
 // styling
 import './App.css'
@@ -14,12 +14,13 @@ import './App.css'
 const App = () => {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={createTheme({palette})}>
         <Navbar />
         <Typography
           variant="h2"
-          sx={{color: "primary.main",
-              '&:hover': {backgroundColor: "orangered"}}}>
+          sx={{color: "#ffffff",
+              // '&:hover': {backgroundColor: "orangered"}
+              }}>
                 Employees 'R' Us
         </Typography>
         <Router>

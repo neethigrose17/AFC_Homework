@@ -13,6 +13,10 @@ app.use(logger("dev"));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+// allows access from any source to communicate with server
+const cors = require("cors");
+app.use(cors());
+
 // CONNECTION
 // Need the env variables we created - destructure
 const {PG_HOST, PG_PORT, PG_DB, PG_USER, PG_PW} = process.env
@@ -35,7 +39,11 @@ conn
 // Route Handlers
 
 app.get("/employee/all", (req, res) => {
-    let query = `SELECT *
+    let query = `SELECT employee_id as "Emp ID",
+                first_name as "First Name",
+                last_name as "Last Name",
+                age as "Age",
+                salary as "Salary"
                 FROM employees;`
     conn.query(query)
     .then(data => {

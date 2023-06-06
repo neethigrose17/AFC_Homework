@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import BasicMenu from "./BasicMenu";
+import {useTheme} from "@mui/material";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,9 +53,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+  const theme = useTheme();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar positionmode="sticky">
+      <AppBar positionmode="sticky" sx={{bgcolor: theme.palette.secondary.main}}>
         <Toolbar>
           <BasicMenu
             size="large"
