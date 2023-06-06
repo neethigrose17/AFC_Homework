@@ -1,7 +1,8 @@
 // packages, modules, components
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Landing from "./components/Landing"
-import Results from "./components/Results";
+import NowPlaying from "./components/NowPlaying";
+import Search from "./components/Search";
 import Error from "./components/Error";
 
 // styling
@@ -13,7 +14,8 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route path="/results" element={<Results />} />
+          <Route path="/nowplaying" element={<NowPlaying />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/error" element={<Error />}/>
           <Route path="*" element={<Error />} />
         </Routes>

@@ -8,7 +8,7 @@ import { ThemeProvider, Typography } from "@mui/material";
 import theme from "./ui/Theme";
 
 
-const App = () => {
+const Landing = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -19,4 +19,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default Landing;

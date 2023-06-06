@@ -20,21 +20,20 @@ const ExpandMore = styled((props) => {
 
 export default function MovieCard(props) {
   const {movieArray} = props;
-  const [expanded, setExpanded] = useState(false);
+  const [expandedID, setExpandedID] = useState(-1);
   const imageBaseURL = "https://image.tmdb.org/t/p/w500"
 
-  const handleExpandClick = (event) => {
-    let requestedID = event.target.parentElement.dataset.id;
-    setExpanded(requestedID)(!expanded);
+  const handleExpandClick = (i) => {
+    setExpandedID(expandedID === i ? -1 : i);
   };
 
   return (
     <div className="card-container">
     {movieArray.map((el, i) => {
       return (
-          <div className="card">
+          <div className="card" key={el.id}>
             <Card data-id={el.id} key={el.id} sx={{ maxWidth: 200 }}>
-              <CardHeader sx={{ height: 60 }}
+              <CardHeader sx={{ height: 70 }}
                 title={<Typography variant="subtitle1" fontWeight="bold">{el.original_title}</Typography>}
                 subheader={<Typography variant="subtitle2" color="text.secondary">{el.release_date}</Typography>}
               />
@@ -51,16 +50,15 @@ export default function MovieCard(props) {
               </CardContent>
               <CardActions disableSpacing>
                 <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
+                  onClick={() => handleExpandClick(i)}
+                  aria-expanded={expandedID === i}
                   aria-label="show more"
                 >
                   <Typography variant="body2">Show Synopsis</Typography>
                   <ExpandMoreIcon />
                 </ExpandMore>
               </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <Collapse id={el.id} in={expandedID === i} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>{el.overview}</Typography>
                 </CardContent>

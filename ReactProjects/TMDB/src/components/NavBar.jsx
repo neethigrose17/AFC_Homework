@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {Button, Menu, MenuItem, Link} from '@mui/material';
 import {useState} from "react";
+import {useNavigate, createSearchParams} from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,6 +57,18 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    if (event.key === "Enter") {
+      console.log(event.target.value);
+      navigate({
+        pathname: "/search", 
+        search: createSearchParams({id: `${event.target.value}`}).toString()
+      })
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar positionmode="sticky">
@@ -89,7 +102,7 @@ export default function NavBar() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link href="/results" sx={{ textDecoration: "none" }}>
+              <Link href="/nowplaying" sx={{ textDecoration: "none" }}>
                 Now Playing
               </Link>
             </MenuItem>
@@ -108,6 +121,7 @@ export default function NavBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={handleSubmit}
             />
           </Search>
         </Toolbar>
