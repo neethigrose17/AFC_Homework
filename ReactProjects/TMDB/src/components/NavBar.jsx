@@ -2,9 +2,11 @@ import { styled, alpha } from '@mui/material/styles';
 import {AppBar, Box, Toolbar, IconButton, Typography, InputBase} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import {Button, Menu, MenuItem, Link} from '@mui/material';
+import {Menu, MenuItem, Link} from '@mui/material';
 import {useState} from "react";
-import {useNavigate, createSearchParams} from "react-router-dom";
+import {useNavigate, createSearchParams} from "react-router-dom"; // these allow redirecting and searching
+
+// // NavBar is from MUI AppBar
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,13 +59,16 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
-  const navigate = useNavigate();
+
+  const navigate = useNavigate(); // useNavigate allows me to redirect to a different route
+
+  // the event is passed to the handleSubmit function when a key is pressed in the search field
   const handleSubmit = (event) => {
+    // if the key was "enter" it redirects to the search results page
     if (event.key === "Enter") {
-      console.log(event.target.value);
       navigate({
         pathname: "/search", 
+        // createSearchParams is how the text in the search field is passed to the search results route
         search: createSearchParams({id: `${event.target.value}`}).toString()
       })
     }
@@ -83,7 +88,7 @@ export default function NavBar() {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            onClick={handleClick} // this opens the menu drop down
           >
             <MenuIcon />
           </IconButton>
@@ -96,6 +101,7 @@ export default function NavBar() {
               'aria-labelledby': 'basic-button',
             }}
           >
+            {/* These are the items in the menu bar */}
             <MenuItem onClick={handleClose}>
               <Link href="/" sx={{ textDecoration: "none" }}>
                 Home
@@ -121,7 +127,7 @@ export default function NavBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onKeyDown={handleSubmit}
+              onKeyDown={handleSubmit} // when a key is pressed it runs the handleSubmit function
             />
           </Search>
         </Toolbar>

@@ -1,5 +1,5 @@
 // packages, modules, components
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing"
 import NowPlaying from "./components/NowPlaying";
 import Search from "./components/Search";
@@ -13,6 +13,7 @@ const App = () => {
     <>
       <Router>
         <Routes>
+          {/* these are the routes for different pages */}
           <Route exact path="/" element={<Landing />} />
           <Route path="/nowplaying" element={<NowPlaying />} />
           <Route path="/search" element={<Search />} />
