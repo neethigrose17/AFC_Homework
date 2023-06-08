@@ -1,5 +1,5 @@
 const Table = (props) => {
-    // console.log(props.employeeData)
+    console.log(props)
     let headers = Object.keys(props.employeeData[0])
     console.log(headers);
     let headerTitles = headers.map(el => {
