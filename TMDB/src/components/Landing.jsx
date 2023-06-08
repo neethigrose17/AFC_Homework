@@ -1,6 +1,5 @@
 // packages, modules, components
 import NavBar from "./NavBar";
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom";
 
